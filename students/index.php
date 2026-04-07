@@ -11,6 +11,8 @@ $data->execute();
 
 // ma'lumotni olish
 $students = $data->fetchAll(PDO::FETCH_ASSOC);
+
+$cnt = 1;
 ?>
 
 
@@ -121,7 +123,7 @@ $students = $data->fetchAll(PDO::FETCH_ASSOC);
             <!-- BU YERGA DATABASEDAN MA'LUMOT KELADI -->
              <?php foreach($students as $item): ?>
             <tr>
-                <td><?= $item['id'] ?></td>
+                <td><?= $cnt++ ?></td>
                 <td><?= $item['first_name'] ?></td>
                 <td><?= $item['last_name'] ?></td>
                 <td><?= $item['age'] ?></td>
@@ -131,7 +133,7 @@ $students = $data->fetchAll(PDO::FETCH_ASSOC);
                 <td class="actions">
                     <a href="#" class="view">Ko‘rish</a>
                     <a href="#" class="edit">Tahrirlash</a>
-                    <a href="#" class="delete">O‘chirish</a>
+                    <a href="delete.php?id=<?= $item['id'];?>" class="delete" onclick="return confirm('Haqiqatdan ham o\'chirmoqchimisiz?')">O‘chirish</a>
                 </td>
             </tr>
             <?php endforeach; ?>
