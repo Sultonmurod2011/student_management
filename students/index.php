@@ -132,7 +132,7 @@ $cnt = 1;
                 <td><?= $item['address'] ?></td>
                 <td class="actions">
                     <a href="#" class="view">Ko‘rish</a>
-                    <a href="#" class="edit">Tahrirlash</a>
+                    <a href="edit.php?id=<?= $item['id']?>" class="edit">Tahrirlash</a>
                     <a href="delete.php?id=<?= $item['id'];?>" class="delete" onclick="return confirm('Haqiqatdan ham o\'chirmoqchimisiz?')">O‘chirish</a>
                 </td>
             </tr>
