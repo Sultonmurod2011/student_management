@@ -1,7 +1,7 @@
 <?php
 include '../config/db.php';
 // query - so'rov
-$sql = "SELECT * FROM classes";
+$sql = "SELECT c.*,t.first_name, t.last_name FROM classes c LEFT JOIN teachers t ON c.teacher_id = t.id";
 
 // tayyorlash
 $data = $conn->prepare($sql);
@@ -109,9 +109,10 @@ $cnt = 1;
     <table>
         <thead>
             <tr>
-                <th>#</th>
+                <th>T/R</th>
                 <th>Sinf nomi</th>
                 <th>Ustozi</th>
+                <th>Amallar</th>
             </tr>
         </thead>
         <tbody>
@@ -120,7 +121,7 @@ $cnt = 1;
             <tr>
                 <td><?= $cnt++ ?></td>
                 <td><?= $item['class_name'] ?></td>
-                <td><?= $item['teacher_id'] ?></td>
+                <td><?= $item['first_name']."  ".$item['last_name'] ?></td>
                 <td class="actions">
                     <a href="show.php?id=<?= $item['id'] ?>" class="view">Ko‘rish</a>
                     <a href="edit.php?id=<?= $item['id']?>" class="edit">Tahrirlash</a>

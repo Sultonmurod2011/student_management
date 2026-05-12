@@ -1,7 +1,7 @@
 <?php
 include '../config/db.php';
 // query - so'rov
-$sql = "SELECT * FROM students";
+$sql = "SELECT s.*,c.class_name FROM students s LEFT JOIN classes c ON s.class_id = c.id";
 
 // tayyorlash
 $data = $conn->prepare($sql);
@@ -109,7 +109,7 @@ $cnt = 1;
     <table>
         <thead>
             <tr>
-                <th>#</th>
+                <th>T/R</th>
                 <th>Ism</th>
                 <th>Familiya</th>
                 <th>Yosh</th>

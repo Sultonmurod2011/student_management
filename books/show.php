@@ -2,18 +2,18 @@
 include '../config/db.php';
 
 $id = $_GET['id'];
-$sql = "SELECT c.*,t.first_name, t.last_name FROM classes c LEFT JOIN teachers t ON c.teacher_id = t.id WHERE c.id = ? ";
+$sql = "SELECT * FROM books WHERE id = ?";
 $data = $conn->prepare($sql);
 $data->execute([$id]);
 
-$class = $data->fetch();
+$book = $data->fetch();
 ?>
 
 <!DOCTYPE html>
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <title>Sinf ma'lumoti</title>
+    <title>Kitobning ma'lumotlari</title>
 
     <style>
         body {
@@ -81,10 +81,14 @@ $class = $data->fetch();
 <body>
 
 <div class="card">
-    <h2>Sinf</h2>
+    <h2>Kitob</h2>
 
-    <div class="info"><span>Sinf nomi:</span> <?php echo $class['class_name']; ?></div>
-    <div class="info"><span>Ustozi:</span> <?= $class['first_name'] ." ". $class['last_name']; ?></div>
+    <div class="info"><span>Nomi:</span> <?php echo $book['book_name']; ?></div>
+    <div class="info"><span>Muallifi:</span> <?php echo $book['book_author']; ?></div>
+    <div class="info"><span>Raqami:</span> <?php echo $book['book_number']; ?></div>
+    <div class="info"><span>Chop etilgan sanasi:</span> <?php echo $book['date']; ?></div>
+
+
     <a href="index.php" class="btn">⬅ Orqaga</a>
 </div>
 

@@ -2,7 +2,7 @@
 include '../config/db.php';
 
 $id = $_GET['id'];
-$sql = "SELECT * FROM students WHERE id = ?";
+$sql = "SELECT s.*,c.class_name FROM students s LEFT JOIN classes c ON s.class_id = c.id WHERE s.id = ?";
 $data = $conn->prepare($sql);
 $data->execute([$id]);
 

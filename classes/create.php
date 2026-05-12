@@ -25,7 +25,7 @@ $teachers = $data->fetchAll(PDO::FETCH_ASSOC);
         <label>Ustozi</label>
         <select name="teacher_id">
             <?php foreach($teachers as $teacher): ?>
-                <option value="<?= $teacher['id']?>"><?= $teacher['first_name']?><?= $teacher['last_name']?></option>
+                <option value="<?= $teacher['id']?>"><?= $teacher['first_name']?> <?= $teacher['last_name']?></option>
             <?php endforeach; ?>    
         </select>
 

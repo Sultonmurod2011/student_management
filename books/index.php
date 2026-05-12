@@ -1,7 +1,7 @@
 <?php
 include '../config/db.php';
 // query - so'rov
-$sql = "SELECT * FROM teachers";
+$sql = "SELECT * FROM books";
 
 // tayyorlash
 $data = $conn->prepare($sql);
@@ -10,7 +10,7 @@ $data = $conn->prepare($sql);
 $data->execute();
 
 // ma'lumotni olish
-$teachers = $data->fetchAll(PDO::FETCH_ASSOC);
+$books = $data->fetchAll(PDO::FETCH_ASSOC);
 
 $cnt = 1;
 ?>
@@ -20,7 +20,7 @@ $cnt = 1;
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <title>Ustozlar ro'yxati</title>
+    <title>Kitoblar ro'yxati</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -101,35 +101,31 @@ $cnt = 1;
 <div class="container">
 
     <div class="top-bar">
-        <h2>Ustozlar ro‘yxati</h2>
+        <h2>Kitoblar ro‘yxati</h2>
         <a href="create.php
-        " class="add-btn">+ Ustoz qo‘shish</a>
+        " class="add-btn">+ Kitob qo‘shish</a>
     </div>
 
     <table>
         <thead>
             <tr>
                 <th>T/R</th>
-                <th>Ism</th>
-                <th>Familiya</th>
-                <th>Yosh</th>
-                <th>Telefon</th>
-                <th>Fan</th>
-                <th>Darajasi</th>
+                <th>Kitob nomi</th>
+                <th>Muallifi</th>
+                <th>Raqami</th>
+                <th>Chop etilgan sanasi</th>
                 <th>Amallar</th>
             </tr>
         </thead>
         <tbody>
             <!-- BU YERGA DATABASEDAN MA'LUMOT KELADI -->
-             <?php foreach($teachers as $item): ?>
+             <?php foreach($books as $item): ?>
             <tr>
                 <td><?= $cnt++ ?></td>
-                <td><?= $item['first_name'] ?></td>
-                <td><?= $item['last_name'] ?></td>
-                <td><?= $item['age'] ?></td>
-                <td><?= $item['phone'] ?></td>
-                <td><?= $item['subject'] ?></td>
-                <td><?= $item['experience'] ?></td>
+                <td><?= $item['book_name'] ?></td>
+                <td><?= $item['book_author'] ?></td>
+                <td><?= $item['book_number'] ?></td>
+                <td><?= $item['date'] ?></td>
                 <td class="actions">
                     <a href="show.php?id=<?= $item['id'] ?>" class="view">Ko‘rish</a>
                     <a href="edit.php?id=<?= $item['id']?>" class="edit">Tahrirlash</a>

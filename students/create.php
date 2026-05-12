@@ -1,3 +1,11 @@
+<?php
+include '../config/db.php';
+$sql = "SELECT * FROM classes";
+$data = $conn->prepare($sql);
+$data->execute();
+$students = $data->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="uz">
 <head>
@@ -21,7 +29,11 @@
         <input type="number" name="age" required>
 
         <label>Sinf</label>
-        <input type="text" name="class_name" required>
+        <select name="class_id">
+            <?php foreach($students as $student): ?>
+                <option value="<?= $student['id']?>"><?= $student['class_name'] ?></option>
+            <?php endforeach; ?>    
+        </select>
 
         <label>Telefon</label>
         <input type="text" name="phone" required>
